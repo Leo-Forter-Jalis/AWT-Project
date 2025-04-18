@@ -2,10 +2,11 @@ package com.LFJ.main;
 
 import java.util.Timer;
 import java.util.TimerTask;
+import com.LFJ.main.Window.WindowController.WindowController;
 
 public class TimerClass {
-    public void start (int countdown, final int WEIGHT, final int HEIGHT){
-
+    public void start (int countdown){
+        WindowController windowController = new WindowController();
         Timer timer = new Timer();
 
         TimerTask timertask = new TimerTask() {
@@ -19,7 +20,7 @@ public class TimerClass {
                 }else{
                     System.out.printf("There's still time left: %d\nStarting GUI!", num);
                     timer.cancel();
-
+                    windowController.start();
                 }
 
             }

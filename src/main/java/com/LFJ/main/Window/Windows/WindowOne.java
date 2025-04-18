@@ -18,6 +18,10 @@ public class WindowOne {
     Button button1 = new Button();
     Button button2 = new Button();
 
+//    public WindowOne(){
+//
+//    }
+
     public WindowOne(String title, String strMenuName , String nameItem1, String nameItem2, String strLabel1, String strButton1, String strButton2){
 
         frame.setTitle(title);
@@ -50,13 +54,56 @@ public class WindowOne {
 
     }
 
-    public void setVisibleWindow(){
+    public void render(){
+        frame.setSize(512, 512);
+        frame.setLayout(new FlowLayout());
+        frame.add(panel);
+        frame.setMenuBar(menuBar);
         frame.setVisible(true);
+
+        logic();
     }
 
     private void logic (){
 
+        frame.addWindowListener(new WindowAdapter(){
+            @Override
+            public void windowClosing(WindowEvent e){
+                frame.dispose();
+            }
+        });
 
+        button1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                label2.setText("LOL"); // Заглушка
+            }
+        });
+
+        button2.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                label2.setText("No LOL"); // Заглушка
+            }
+        });
+
+        item1.addActionListener(new ActionListener(){
+
+            @Override
+            public void actionPerformed(ActionEvent e){
+                label2.setText("Help me!"); // Заглушка
+            }
+
+        });
+
+        item2.addActionListener(new ActionListener(){
+
+            @Override
+            public void actionPerformed(ActionEvent e){
+                label2.setText("HELP ME!!!!!"); // Заглушка
+            }
+
+        });
 
     }
 
