@@ -2,9 +2,11 @@ package com.LFJ.main.Window.Windows;
 
 import java.awt.*;
 import java.awt.event.*;
+import com.LFJ.main.Window.WindowController.WindowInit;
 
 public class WindowOne {
 
+    WindowInit windowInit = new WindowInit();
     Frame frame = new Frame();
     Panel panel = new Panel();
     MenuBar menuBar = new MenuBar();
@@ -69,6 +71,7 @@ public class WindowOne {
         frame.addWindowListener(new WindowAdapter(){
             @Override
             public void windowClosing(WindowEvent e){
+                windowInit.closeWin();
                 frame.dispose();
             }
         });
@@ -91,7 +94,7 @@ public class WindowOne {
 
             @Override
             public void actionPerformed(ActionEvent e){
-                label2.setText("Help me!"); // Заглушка
+                windowInit.renderWin();
             }
 
         });
@@ -100,7 +103,8 @@ public class WindowOne {
 
             @Override
             public void actionPerformed(ActionEvent e){
-                label2.setText("HELP ME!!!!!"); // Заглушка
+                windowInit.closeWin();
+                frame.dispose();
             }
 
         });

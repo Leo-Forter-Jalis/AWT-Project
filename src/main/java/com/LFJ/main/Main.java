@@ -1,15 +1,14 @@
 package com.LFJ.main;
 
 import java.util.Scanner;
-import com.LFJ.main.TimerClass;
 
 public class Main {
 
     public static void main(String [] args){
-        logic();
+        logic(); // Передаём управление методу logic()
     }
 
-    private static void logic(){
+    private static void logic(){ // Основная логика программы
 
         TimerClass timer = new TimerClass();
 
@@ -37,10 +36,10 @@ public class Main {
 
             String str = scan.nextLine();
             if(str.equals("Y") || str.equals("y")){
-                scan.close();
+                scan.close(); // Закрываем сканер после ввода
                 return true;
             } else if (str.equals("N") || str.equals("n")) {
-                scan.close();
+                scan.close(); // Закрываем сканер после ввода
                 return false;
             }else{
                 System.out.print("Input error!\nRepeat the input again.\nRe-entry (y/n) >> : ");
