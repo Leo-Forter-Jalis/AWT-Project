@@ -2,68 +2,45 @@ package com.LFJ.main.Window.Windows;
 
 import java.awt.*;
 import java.awt.event.*;
-import com.LFJ.main.Window.WindowController.WindowInit;
+import com.LFJ.main.Window.Abs.Window;
+import com.LFJ.main.Window.Controller.WindowTwoController;
 
-public class WindowOne {
+public class WindowOne extends Window {
 
-    WindowInit windowInit = new WindowInit();
-    Frame frame = new Frame();
-    Panel panel = new Panel();
-    MenuBar menuBar = new MenuBar();
+    WindowTwoController controller = new WindowTwoController();
 
-    Menu menu = new Menu();
-    MenuItem item1 = new MenuItem();
-    MenuItem item2 = new MenuItem();
+    private Frame frame = new Frame("WindowOne");
+    private Panel panel = new Panel();
 
-    Label label1 = new Label();
-    Label label2 = new Label();
-    Button button1 = new Button();
-    Button button2 = new Button();
+    private MenuBar menuBar = new MenuBar();
+    private Menu menu = new Menu("Menu");
+    private MenuItem item1 = new MenuItem("Open");
+    private MenuItem item2 = new MenuItem("Exit");
 
-//    public WindowOne(){
-//
-//    }
+    private Label label1 = new Label("LOL");
+    private Label label2 = new Label("           ");
+    private Button button1 = new Button("Ye");
+    private Button button2 = new Button("O");
 
-    public WindowOne(String title, String strMenuName , String nameItem1, String nameItem2, String strLabel1, String strButton1, String strButton2){
+    public WindowOne(){
+        Component[] components = {label1, button1, button2, label2};
+        for(Component comp : components){
+            panel.add(comp);
+        }
 
-        frame.setTitle(title);
-        frame.setLayout(new FlowLayout());
-
-        menu.setLabel(strMenuName);
-        item1.setLabel(nameItem1);
-        item2.setLabel(nameItem2);
-
-        label1.setText(strLabel1);
-        button1.setLabel(strButton1);
-        button2.setLabel(strButton2);
-
-        pullData();
-
-    }
-
-    private void pullData(){
-
-         Component[] components0 = {label1, label2, button1, button2};
-         MenuItem[] items = {item1, item2};
-         for(Component comp : components0){
-             panel.add(comp);
-         }
-
-         for(MenuItem item : items){
-             menu.add(item);
-         }
-         menuBar.add(menu);
+        menu.add(item1);
+        menu.add(item2);
+        menuBar.add(menu);
 
     }
 
     public void render(){
-        frame.setSize(512, 512);
-        frame.setLayout(new FlowLayout());
-        frame.add(panel);
-        frame.setMenuBar(menuBar);
-        frame.setVisible(true);
-
+        super.render(frame, panel, menuBar);
         logic();
+    }
+
+    public void close(){
+        super.close(frame);
     }
 
     private void logic (){
@@ -71,43 +48,22 @@ public class WindowOne {
         frame.addWindowListener(new WindowAdapter(){
             @Override
             public void windowClosing(WindowEvent e){
-                windowInit.closeWin();
-                frame.dispose();
+                if(controller.isRun()) {
+                    controller.close();
+                    close();
+                }else{
+                    close();
+                }
             }
         });
 
-        button1.addActionListener(new ActionListener() {
+        item1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                label2.setText("LOL"); // Заглушка
+                controller.run();
             }
         });
 
-        button2.addActionListener(new ActionListener(){
-            @Override
-            public void actionPerformed(ActionEvent e){
-                label2.setText("No LOL"); // Заглушка
-            }
-        });
-
-        item1.addActionListener(new ActionListener(){
-
-            @Override
-            public void actionPerformed(ActionEvent e){
-                windowInit.renderWin();
-            }
-
-        });
-
-        item2.addActionListener(new ActionListener(){
-
-            @Override
-            public void actionPerformed(ActionEvent e){
-                windowInit.closeWin();
-                frame.dispose();
-            }
-
-        });
 
     }
 

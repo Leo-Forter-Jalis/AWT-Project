@@ -12,16 +12,16 @@ public class Main {
 
         TimerClass timer = new TimerClass();
 
-        boolean logic = false;
+        boolean logicValue;
 
         System.out.println("\nWelcome to the GUI-enabled program!");
         System.out.println("But you will say that there is no GUI here, and for a while you will be right.");
         System.out.println("I'll only ask you one thing. Do you want to continue?");
 
         System.out.print("Enter your answer (y/n) >> ");
-        logic = input();
+        logicValue = input();
 
-        if(!logic){
+        if(!logicValue){
             System.out.println("\nGoodbye! I'll see you another time.");
         }else{
             timer.start(10);
